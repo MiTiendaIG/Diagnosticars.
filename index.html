@@ -32,6 +32,7 @@
       position: relative;
       z-index: 1; /* contenido sobre el video */
       overflow-x: hidden; /* Evitar scroll horizontal */
+      font-size: 16px;
     }
 
     /* ------------------------------------------- */
@@ -52,7 +53,7 @@
       transition: opacity 0.8s ease;
     }
     #splash img {
-      max-width: 50%;
+      max-width: 90%;
       height: auto;
       border: 2px solid #ccc;
       border-radius: 10px;
@@ -97,30 +98,63 @@
     header {
       background-color: #005792;
       color: white;
-      padding: 1.5rem;
+      padding: 1rem;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(0,87,146,0.9), rgba(0,59,92,0.8));
+      z-index: -1;
     }
     header img {
-      max-width: 150px;
+      max-width: 120px;
       height: auto;
-      margin-bottom: 1rem;
-      border: 2px solid #fff;
-      border-radius: 8px;
+      margin-bottom: 0.8rem;
+      border: 3px solid #fff;
+      border-radius: 10px;
       transition: transform 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
-    header img:hover {
-      transform: scale(1.05);
+    header h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1rem;
+    }
+
+    /* Menú móvil */
+    .menu-toggle {
+      display: none;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      color: white;
+      font-size: 1.8rem;
+      cursor: pointer;
+      z-index: 101;
     }
 
     nav {
       background-color: #003459;
-      padding: 1rem;
+      padding: 0.8rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     nav ul {
       list-style: none;
       display: flex;
       justify-content: center;
-      gap: 2rem;
+      gap: 1rem;
       flex-wrap: wrap;
     }
     nav a {
@@ -128,9 +162,14 @@
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      display: block;
     }
     nav a:hover {
       color: #00bbf0;
+      background: rgba(255,255,255,0.1);
     }
 
     /* ------------------------------------------- */
@@ -139,25 +178,37 @@
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 2rem;
+      padding: 1.5rem;
     }
 
     .hero {
-      background: linear-gradient(rgba(0,87,146,0.8), rgba(0,87,146,0.8)),
+      background: linear-gradient(135deg, rgba(0,87,146,0.85), rgba(0,59,92,0.85)),
                   url('https://images.unsplash.com/photo-1584432810601-6c7f27d2362b');
       background-size: cover;
       color: white;
       text-align: center;
-      padding: 4rem 1rem;
+      padding: 2rem 1rem;
       border-radius: 10px;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       animation: fadeInHero 1.5s forwards ease-in-out;
-      opacity: 0; /* Arranca transparente para animación */
+      opacity: 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.2);
     }
     @keyframes fadeInHero {
       to {
         opacity: 1;
       }
+    }
+    .hero h2 {
+      font-size: 1.8rem;
+      margin-bottom: 0.8rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 100%;
+      margin: 0 auto;
     }
 
     /* ------------------------------------------- */
@@ -165,17 +216,20 @@
     /* ------------------------------------------- */
     .info-section {
       background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      margin: 2rem 0;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      margin: 1.5rem 0;
       text-align: center;
+      border: 1px solid #eaeaea;
     }
     .info-section img {
       border-radius: 10px;
-      border: 2px solid #ccc;
-      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+      border: 2px solid #e0f0ff;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
       transition: transform 0.3s;
+      max-width: 100%;
+      height: auto;
     }
     .info-section img:hover {
       transform: scale(1.02);
@@ -186,56 +240,81 @@
     /* ------------------------------------------- */
     .ecografia-section .ecografia-content {
       display: flex;
-      flex-wrap: wrap; /* Se adaptará en pantallas pequeñas */
-      gap: 2rem;       /* Espacio entre columnas */
+      flex-wrap: wrap;
+      gap: 1.5rem;
       align-items: flex-start;
-      justify-content: center; /* Centrar ambas columnas */
+      justify-content: center;
     }
     /* Columna de texto */
     .ecografia-text {
       flex: 1;
-      min-width: 300px;
+      min-width: 100%;
       text-align: left;
     }
     .ecografia-text h2 {
-      text-align: center; /* Título centrado para un look equilibrado */
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #005792;
     }
     .ecografia-text p {
       margin-top: 1rem;
       line-height: 1.6;
+      color: #333;
+      font-size: 1rem;
     }
     /* Lista de ecografías */
     .ecografia-list {
       margin-top: 1.5rem;
-      display: inline-block;
     }
     .ecografia-list h3 {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
       color: #005792;
       font-weight: 700;
+      font-size: 1.3rem;
+      text-align: center;
     }
     .ecografia-list ul {
-      list-style: disc;
-      margin-left: 1.5rem;
-      line-height: 1.4;
+      list-style: none;
+      padding-left: 0;
     }
     .ecografia-list ul li {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.7rem;
+      padding-left: 1.5rem;
+      position: relative;
+      font-size: 1rem;
+    }
+    .ecografia-list ul li::before {
+      content: "•";
+      color: #00bbf0;
+      font-size: 1.5rem;
+      position: absolute;
+      left: 0;
+      top: -5px;
     }
 
     /* Columna de imágenes */
     .ecografia-images {
       flex: 1;
-      min-width: 300px;
+      min-width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      align-items: center; /* Centra las imágenes verticalmente */
+      gap: 1.5rem;
+      align-items: center;
     }
-    /* Ajuste de imágenes: mayor ancho/alto y un "object-fit" */
-    .ecografia-img {
-      width: 350px; 
+    .ecografia-img-container {
+      width: 100%;
+      max-width: 400px;
       height: 250px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+    .ecografia-img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       display: block;
     }
@@ -245,27 +324,41 @@
     /* ------------------------------------------- */
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
       margin-top: 1.5rem;
     }
     .service-card {
-      background: #f9f9f9;
+      background: linear-gradient(135deg, #f7fbfe, #ffffff);
       padding: 1.5rem;
       border-radius: 10px;
       text-align: center;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
       animation: fadeInUp 1s forwards ease-in-out;
       opacity: 0;
+      border: 1px solid #e0f0ff;
+      transition: all 0.3s ease;
     }
     .service-card i {
-      font-size: 2rem;
+      font-size: 2.2rem;
       color: #00bbf0;
       margin-bottom: 1rem;
+      background: #e6f4ff;
+      width: 70px;
+      height: 70px;
+      line-height: 70px;
+      border-radius: 50%;
+      text-align: center;
+      margin: 0 auto 1rem;
     }
-    .service-card:hover {
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      transform: translateY(5px);
+    .service-card h3 {
+      color: #005792;
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+    }
+    .service-card p {
+      color: #555;
+      font-size: 1rem;
     }
 
     /* ------------------------------------------- */
@@ -275,7 +368,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1rem;
+      gap: 1.2rem;
       margin-top: 1.5rem;
     }
     .whatsapp-button, .instagram-button {
@@ -284,36 +377,380 @@
       justify-content: center;
       gap: 10px;
       color: white;
-      padding: 1rem 2rem;
+      padding: 1rem 1.8rem;
       border-radius: 50px;
       text-decoration: none;
       font-size: 1.1rem;
-      transition: background-color 0.3s, transform 0.3s;
+      font-weight: 600;
+      transition: all 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 300px;
+      text-align: center;
     }
     .whatsapp-button {
-      background-color: #25d366;
-    }
-    .whatsapp-button:hover {
-      background-color: #1da851;
-      transform: scale(1.05);
+      background: linear-gradient(135deg, #25d366, #1da851);
     }
     .instagram-button {
-      background-color: #E1306C;
-    }
-    .instagram-button:hover {
-      background-color: #c12258;
-      transform: scale(1.05);
+      background: linear-gradient(135deg, #E1306C, #C13584);
     }
 
     /* ------------------------------------------- */
     /* 11. PIE DE PÁGINA                          */
     /* ------------------------------------------- */
     footer {
-      background-color: #003459;
+      background: linear-gradient(135deg, #002b4e, #003459);
       color: white;
       text-align: center;
-      padding: 2rem;
+      padding: 2rem 1rem;
       margin-top: 3rem;
+      position: relative;
+    }
+    footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #00bbf0, #25d366);
+    }
+    footer p {
+      margin: 0.8rem 0;
+      font-size: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    /* ------------------------------------------- */
+    /* 12. NUEVA SECCIÓN DE OBRAS SOCIALES         */
+    /* ------------------------------------------- */
+    .obras-section {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      margin: 1.5rem 0;
+    }
+    
+    .obras-title {
+      text-align: center;
+      color: #005792;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    .obras-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, #00bbf0, #005792);
+      border-radius: 2px;
+    }
+    
+    .cobertura-text {
+      text-align: center;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: #003459;
+      font-weight: bold;
+      line-height: 1.5;
+    }
+    
+    .obras-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .obra-card {
+      background: linear-gradient(135deg, #e6f4ff, #f7fbff);
+      border-radius: 10px;
+      padding: 1.2rem 0.8rem;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      transition: all 0.4s ease;
+      border: 1px solid #d1ebff;
+      position: relative;
+      overflow: hidden;
+    }
+    .obra-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #00bbf0, #005792);
+    }
+    
+    .obra-card i {
+      font-size: 2rem;
+      color: #00bbf0;
+      margin-bottom: 0.8rem;
+    }
+    
+    .obra-card h3 {
+      color: #005792;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    
+    /* ------------------------------------------- */
+    /* 13. UBICACIÓN CON IMÁGENES                  */
+    /* ------------------------------------------- */
+    .location-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    
+    .location-details {
+      text-align: center;
+      width: 100%;
+    }
+    .location-details h2 {
+      color: #005792;
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 8px;
+    }
+    .location-details h2::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 3px;
+      background: linear-gradient(90deg, #00bbf0, #005792);
+      border-radius: 2px;
+    }
+    
+    .location-details p {
+      font-size: 1rem;
+      margin: 0.8rem 0;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .location-images {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      width: 100%;
+    }
+    
+    .location-img-container {
+      width: 100%;
+      max-width: 350px;
+      height: 220px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.4s ease;
+      position: relative;
+    }
+    
+    .location-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    
+    /* ------------------------------------------- */
+    /* 14. ESTILOS PARA MAPA DE UBICACIÓN          */
+    /* ------------------------------------------- */
+    .map-container {
+      margin-top: 1.5rem;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      max-width: 100%;
+      margin: 1.5rem auto 0;
+      border: 1px solid #e0f0ff;
+      position: relative;
+    }
+    .map-container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #00bbf0, #25d366);
+      z-index: 1;
+    }
+    
+    .map-container iframe {
+      width: 100%;
+      height: 250px;
+      border: 0;
+      display: block;
+    }
+    
+    /* ------------------------------------------- */
+    /* 15. MEDIA QUERIES PARA DISPOSITIVOS MÓVILES */
+    /* ------------------------------------------- */
+    @media (max-width: 768px) {
+      /* Menú móvil */
+      .menu-toggle {
+        display: block;
+      }
+      
+      nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #003459;
+        padding: 1rem 0;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+      }
+      
+      nav ul.active {
+        display: flex;
+      }
+      
+      nav a {
+        text-align: center;
+        padding: 0.8rem;
+      }
+      
+      /* Ajustes generales */
+      .container {
+        padding: 1rem;
+      }
+      
+      .hero {
+        padding: 1.5rem 1rem;
+      }
+      
+      .hero h2 {
+        font-size: 1.6rem;
+      }
+      
+      .info-section {
+        padding: 1.2rem;
+      }
+      
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .ecografia-text h2, .obras-title, .location-details h2 {
+        font-size: 1.6rem;
+      }
+      
+      .cobertura-text {
+        font-size: 1rem;
+      }
+      
+      .obras-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      }
+      
+      .obra-card {
+        padding: 1rem 0.5rem;
+      }
+      
+      .obra-card i {
+        font-size: 1.8rem;
+      }
+      
+      .whatsapp-button, .instagram-button {
+        font-size: 1rem;
+        padding: 0.9rem 1.5rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.3rem;
+        padding-top: 1.5rem;
+      }
+      
+      header p {
+        font-size: 0.9rem;
+      }
+      
+      .hero h2 {
+        font-size: 1.4rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .ecografia-img-container, .location-img-container {
+        height: 200px;
+      }
+      
+      .map-container iframe {
+        height: 200px;
+      }
+      
+      .service-card {
+        padding: 1.2rem;
+      }
+      
+      .service-card i {
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+        font-size: 1.8rem;
+      }
+      
+      footer p {
+        font-size: 0.9rem;
+      }
+    }
+    
+    /* ------------------------------------------- */
+    /* 16. ESTILOS ADICIONALES                     */
+    /* ------------------------------------------- */
+    .section-divider {
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, #00bbf0, #005792);
+      margin: 1.5rem auto;
+      border-radius: 2px;
+    }
+    
+    .highlight-text {
+      color: #00bbf0;
+      font-weight: bold;
+    }
+    
+    .mobile-only {
+      display: none;
+    }
+    
+    @media (max-width: 768px) {
+      .mobile-only {
+        display: block;
+      }
+      .desktop-only {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -332,6 +769,9 @@
 
   <!-- 3. Encabezado con logo -->
   <header class="fadeInUp">
+    <div class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </div>
     <img src="https://i.imgur.com/vzbuaF6.jpg" alt="DI-ARS">
     <h1>Consultorio Médico Diagnosticars</h1>
     <p>Especialistas en cuidado preventivo</p>
@@ -339,9 +779,11 @@
 
   <!-- 4. Menú de navegación -->
   <nav class="fadeInUp">
-    <ul>
+    <ul id="navMenu">
       <li><a href="#inicio">Inicio</a></li>
       <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#obras-sociales">Obras Sociales</a></li>
+      <li><a href="#ecografias">Ecografías</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
   </nav>
@@ -354,14 +796,81 @@
 
   <!-- 6. Contenedor principal -->
   <div class="container fadeInUp">
-    <!-- Ubicación -->
+    <!-- Ubicación con imágenes -->
     <section class="info-section" id="inicio">
-      <h2>Ubicación</h2>
-      <p><i class="fas fa-map-marker-alt"></i> Av Maipú 1814 - Local 8</p>
+      <div class="location-container">
+        <div class="location-details">
+          <h2>Ubicación</h2>
+          <p><i class="fas fa-map-marker-alt"></i> Av Maipú 1814 - Local 7</p>
+          <p><i class="fas fa-city"></i> Vicente López, Buenos Aires</p>
+        </div>
+        
+        <div class="location-images">
+          <div class="location-img-container">
+            <img class="location-img" 
+                 src="https://i.imgur.com/cY2xdUR.jpeg" 
+                 alt="Fachada del consultorio">
+          </div>
+          <div class="location-img-container">
+            <img class="location-img" 
+                 src="https://i.imgur.com/UFvTXr0.jpeg" 
+                 alt="Sala de espera">
+          </div>
+        </div>
+        
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3287.094888421883!2d-58.47685732357624!3d-34.52768885464865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb0f1d0a1400f%3A0x3b8e3d9b2a5e3b0f!2sAv.%20Maip%C3%BA%201814%2C%20B1636FDA%20Olivos%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1691100000000!5m2!1ses!2sar" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Nueva sección de Obras Sociales -->
+    <section class="obras-section fadeInUp" id="obras-sociales">
+      <h2 class="obras-title">OBRAS SOCIALES</h2>
+      <p class="cobertura-text">Cobertura 100% sin copagos para:</p>
+      
+      <div class="obras-grid">
+        <div class="obra-card">
+          <i class="fas fa-heartbeat"></i>
+          <h3>IOMA</h3>
+        </div>
+        <div class="obra-card">
+          <i class="fas fa-balance-scale"></i>
+          <h3>PODER JUDICIAL</h3>
+        </div>
+        <div class="obra-card">
+          <i class="fas fa-home"></i>
+          <h3>CASA BAYRES</h3>
+        </div>
+        <div class="obra-card">
+          <i class="fas fa-user-md"></i>
+          <h3>FEMEBA</h3>
+        </div>
+        <div class="obra-card">
+          <i class="fas fa-stethoscope"></i>
+          <h3>COMEI</h3>
+        </div>
+        <div class="obra-card">
+          <i class="fas fa-pills"></i>
+          <h3>AMFFA</h3>
+        </div>
+        <div class="obra-card">
+          <i class="fas fa-hospital"></i>
+          <h3>CASA</h3>
+        </div>
+        <div class="obra-card">
+          <i class="fas fa-music"></i>
+          <h3>SADAIC</h3>
+        </div>
+        <div class="obra-card">
+          <i class="fas fa-users"></i>
+          <h3>OPDEA</h3>
+        </div>
+      </div>
     </section>
 
     <!-- Ecografías (reorganizada) -->
-    <section class="info-section ecografia-section fadeInUp">
+    <section class="info-section ecografia-section fadeInUp" id="ecografias">
       <div class="ecografia-content">
         <!-- Columna de Texto -->
         <div class="ecografia-text">
@@ -382,19 +891,23 @@
               <li>Ecografía Ginecológica</li>
             </ul>
           </div>
-          <p style="margin-top: 1.5rem;">
+          <p style="margin-top: 1.5rem; font-style: italic;">
             Ante cualquier duda o inquietud, te invitamos a consultarnos. Nuestro equipo estará encantado de orientarte y resolver tus preguntas.
           </p>
         </div>
 
         <!-- Columna de Imágenes -->
         <div class="ecografia-images">
-          <img class="ecografia-img" 
-               src="https://i.imgur.com/N50rW8B.jpg" 
-               alt="Ecografía 1">
-          <img class="ecografia-img" 
-               src="https://imgur.com/mDwV6KC.jpg" 
-               alt="Ecografía 2">
+          <div class="ecografia-img-container">
+            <img class="ecografia-img" 
+                 src="https://i.imgur.com/N50rW8B.jpg" 
+                 alt="Ecografía 1">
+          </div>
+          <div class="ecografia-img-container">
+            <img class="ecografia-img" 
+                 src="https://i.imgur.com/mDwV6KC.jpg" 
+                 alt="Ecografía 2">
+          </div>
         </div>
       </div>
     </section>
@@ -416,7 +929,7 @@
         <div class="service-card">
           <i class="fas fa-percentage"></i>
           <h3>Descuentos</h3>
-          <p>40% de descuento para jubilados.</p>
+          <p>50% de descuento para jubilados.</p>
         </div>
       </div>
     </section>
@@ -443,18 +956,56 @@
 
   <!-- Pie de página -->
   <footer class="fadeInUp" id="contacto">
-    <p>Contacto: consultorio@diagnosticars.com | Tel: +54 9 11 7134-0876</p>
-    <p>Horario de atención: Lunes a Viernes de 8:00 a 20:00 hs</p>
+    <p><i class="fas fa-envelope"></i> Contacto: consultorio@diagnosticars.com</p>
+    <p><i class="fas fa-phone"></i> Tel: +54 9 11 7134-0876</p>
+    <p><i class="fas fa-clock"></i> Horario: Lunes a Viernes de 8:00 a 20:00 hs</p>
+    <div class="section-divider"></div>
     <p>© 2023 Diagnosticars. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- SCRIPT para ocultar el splash cuando cargue todo -->
+  <!-- SCRIPT para funcionalidad móvil -->
   <script>
+    // Ocultar splash screen
     window.addEventListener('load', function() {
       const splash = document.getElementById('splash');
       setTimeout(() => {
         splash.classList.add('hidden');
       }, 800); 
+    });
+    
+    // Menú móvil
+    document.getElementById('menuToggle').addEventListener('click', function() {
+      const navMenu = document.getElementById('navMenu');
+      navMenu.classList.toggle('active');
+      
+      // Cambiar icono
+      const icon = this.querySelector('i');
+      if (icon.classList.contains('fa-bars')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
+    
+    // Cerrar menú al hacer clic en un enlace
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', function() {
+        document.getElementById('navMenu').classList.remove('active');
+        document.querySelector('#menuToggle i').classList.remove('fa-times');
+        document.querySelector('#menuToggle i').classList.add('fa-bars');
+      });
+    });
+    
+    // Suavizar desplazamiento
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
     });
   </script>
 
